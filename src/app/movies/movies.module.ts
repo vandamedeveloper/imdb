@@ -4,18 +4,26 @@ import { MoviesContainerComponent } from './movies-container/movies-container.co
 import { MovieComponent } from './movie/movie.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MoviesSearchComponent } from './movies-search/movies-search.component';
-
-
+import { MoviesRoutingModule } from './movies-routing.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     MoviesContainerComponent,
     MovieComponent,
     MoviesListComponent,
-    MoviesSearchComponent
+    MoviesSearchComponent,
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    MoviesRoutingModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
 })
-export class MoviesModule { }
+export class MoviesModule {}

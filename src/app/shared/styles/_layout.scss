@@ -1,0 +1,67 @@
+@for $i from 1 to 150 {
+  //custom margins
+  .m-#{$i} {
+    margin: #{$i} + "px" !important;
+  }
+  .m-t-#{$i} {
+    margin-top: #{$i} + "px";
+  }
+  .m-r-#{$i} {
+    margin-right: #{$i} + "px";
+  }
+  .m-b-#{$i} {
+    margin-bottom: #{$i} + "px";
+  }
+  .m-l-#{$i} {
+    margin-left: #{$i} + "px";
+  }
+
+  //custom paddings
+  .p-#{$i} {
+    padding: #{$i} + "px";
+  }
+  .p-t-#{$i} {
+    padding-top: #{$i} + "px";
+  }
+  .p-r-#{$i} {
+    padding-right: #{$i} + "px";
+  }
+  .p-b-#{$i} {
+    padding-bottom: #{$i} + "px";
+  }
+  .p-l-#{$i} {
+    padding-left: #{$i} + "px";
+  }
+  //custom height
+  .h-#{$i} {
+    height: #{$i} + "px";
+  }
+  //custom width
+  .w-#{$i} {
+    height: #{$i} + "px";
+  }
+  .max-w-#{$i} {
+    max-width: #{$i} + "px";
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+.align-items {
+  &--end {
+    align-items: end;
+  }
+  &--center {
+    align-items: center;
+  }
+}
+.justify-content {
+  display: flex;
+  &--between {
+    justify-content: space-between;
+  }
+  &--center {
+    justify-content: center;
+  }
+}

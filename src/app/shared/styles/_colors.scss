@@ -1,0 +1,11 @@
+.text-color {
+  &-white {
+    color: #fff !important;
+  }
+  &-red {
+    color: rgb(145, 9, 9) !important;
+  }
+  &-black {
+    color: black !important;
+  }
+}

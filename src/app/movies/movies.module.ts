@@ -5,6 +5,10 @@ import { MovieComponent } from './movie/movie.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MoviesSearchComponent } from './movies-search/movies-search.component';
 import { MoviesRoutingModule } from './movies-routing.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -13,6 +17,13 @@ import { MoviesRoutingModule } from './movies-routing.module';
     MoviesListComponent,
     MoviesSearchComponent,
   ],
-  imports: [CommonModule, MoviesRoutingModule],
+  imports: [
+    CommonModule,
+    MoviesRoutingModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
 })
 export class MoviesModule {}

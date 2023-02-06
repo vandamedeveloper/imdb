@@ -4,4 +4,5 @@ export interface Movie {
   imdbId: string;
   Type: string;
   Poster: string;
+  Actors: string;
 }

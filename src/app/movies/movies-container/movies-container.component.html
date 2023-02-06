@@ -3,8 +3,19 @@
         <app-movies-search class="w-full" (onSearch)="searchMovie($event)">
         </app-movies-search>
         <section>
-            <div *ngIf="moviesLoading$ | async">Loading movies...</div>
-            <app-movies-list [movies]="movies$ | async"></app-movies-list>
+            <app-movies-list [movies]="movies$ | async"
+                *ngIf="!(moviesLoading$ | async) && (movies$ | async).length > 0"></app-movies-list>
         </section>
+        <div *ngIf="(moviesLoading$ | async)"
+            style="position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
+            <mat-spinner color="warn"></mat-spinner>
+        </div>
+        <div
+            *ngIf="(error$ | async) && (movies$ | async) && (movies$ | async).length && (movies$ | async).length === 0 && (movieSearched$ | async) && !(moviesLoading$ | async)">
+            <h1>No movies found with this title</h1>
+        </div>
+        <div *ngIf="error$ | async">
+            <h1>{{error$ | async}}</h1>
+        </div>
     </div>
 </section>

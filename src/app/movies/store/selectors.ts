@@ -16,3 +16,8 @@ export const errorSelector = createSelector(
   selectFeature,
   (state) => state.error
 );
+
+export const movieSearchedSelector = createSelector(
+  selectFeature,
+  (state) => state.movieSearched
+);

@@ -1,6 +1,5 @@
-<ul>
-    <li *ngFor="let movie of movies">
-        <h2 href="#">{{movie.Title}}</h2>
-        <img [src]="movie.Poster" class="w-200" />
-    </li>
-</ul>
+<div class="container d-flex justify-content--center" style="flex-wrap: wrap;">
+    <mat-card *ngFor="let movie of movies" class="max-w-250 m-10">
+        <app-movie [movie]="movie"></app-movie>
+    </mat-card>
+</div>

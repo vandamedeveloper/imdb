@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import { enviroment } from 'src/app/enviroments/enviroment';
 import { Movie } from '../../models/movie/movie.interface';
 
@@ -13,7 +13,7 @@ export class MovieService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  getMovies(movie?: string): Observable<Movie[]> {
+  getMovies(movie: string, page?: number): Observable<Movie[]> {
     const movieTitle = movie?.split(' ').join('+');
     return this._httpClient
       .get<Movie[]>(`${this._API_URL}${this._API_KEY}&s=${movieTitle}`)

@@ -7,6 +7,7 @@ import * as MoviesActions from '../store/actions';
 import {
   errorSelector,
   isLoadingSelector,
+  movieSearchedSelector,
   moviesSelector,
 } from '../store/selectors';
 
@@ -18,11 +19,13 @@ import {
 export class MoviesContainerComponent {
   moviesLoading$: Observable<boolean>;
   movies$: Observable<Movie[]>;
+  movieSearched$: Observable<boolean>;
   error$: Observable<string | null>;
   constructor(private _store: Store<AppState>) {
     this.moviesLoading$ = this._store.pipe(select(isLoadingSelector));
     this.movies$ = this._store.pipe(select(moviesSelector));
     this.error$ = this._store.pipe(select(errorSelector));
+    this.movieSearched$ = this._store.pipe(select(movieSearchedSelector));
   }
 
   searchMovie(movie: string) {

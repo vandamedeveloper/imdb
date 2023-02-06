@@ -1,1 +1,21 @@
-<p>movie works!</p>
+<!-- <mat-card-header class="m-b-10">
+    <mat-card-subtitle>{{movie.Year}}</mat-card-subtitle>
+</mat-card-header> -->
+<!-- <img mat-card-image [src]="movie.Poster" alt="Photo of a Shiba Inu" class="h-250 img-object-center"> -->
+<!-- <mat-card-content>
+</mat-card-content> -->
+<!-- <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+</mat-card-actions> -->
+
+<img mat-card-image [src]="movie.Poster" alt="Poster of the movie" class="w-250 h-300 img-object-center">
+<mat-card-content>
+    <h3 class="ellipsis"><strong>{{movie.Title}}</strong></h3>
+    <p>Year: {{movie.Year}}</p>
+</mat-card-content>
+<mat-card-actions>
+    <button mat-icon-button class="text-color-red">
+        <mat-icon>favorite_outline</mat-icon>
+    </button>
+</mat-card-actions>

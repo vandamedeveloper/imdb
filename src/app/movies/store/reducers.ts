@@ -7,6 +7,7 @@ export const initialState: MovieState = {
   loadingMovies: false,
   movies: [],
   error: null,
+  movieSearched: false,
 };
 
 export const reducers = createReducer(
@@ -14,18 +15,22 @@ export const reducers = createReducer(
 
   on(MoviesActions.getMovies, (state) => ({
     ...state,
+    movieSearched: true,
     loadingMovies: true,
+    error: null,
   })),
 
   //success vs failure reducers
   on(MoviesActions.getMoviesSuccess, (state, action) => ({
     ...state,
     movies: action.movies,
+    error: null,
     loadingMovies: false,
   })),
   on(MoviesActions.getMoviesFailure, (state, action) => ({
     ...state,
     error: action.error,
-    loadingMovies: true,
+    loadingMovies: false,
+    movies: [],
   }))
 );

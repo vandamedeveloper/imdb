@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +34,8 @@ import { MoviesEffects } from './store/effects';
     StoreModule.forFeature('movies', reducers),
     EffectsModule.forFeature([MoviesEffects]),
     ReactiveFormsModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MoviesModule {}

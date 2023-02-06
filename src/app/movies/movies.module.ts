@@ -9,6 +9,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { MoviesEffects } from './store/effects';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    StoreModule.forFeature('movies', reducers),
+    EffectsModule.forFeature([MoviesEffects]),
+    ReactiveFormsModule,
   ],
 })
 export class MoviesModule {}

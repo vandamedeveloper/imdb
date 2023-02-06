@@ -3,6 +3,7 @@
         <app-movies-search class="w-full" (onSearch)="searchMovie($event)">
         </app-movies-search>
         <section>
+            <div *ngIf="moviesLoading$ | async">Loading movies...</div>
             <app-movies-list></app-movies-list>
         </section>
     </div>

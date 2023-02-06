@@ -1,5 +1,14 @@
 import { Component } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Movie } from 'src/app/shared/models/movie/movie.interface';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
+import * as MoviesActions from '../store/actions';
+import {
+  errorSelector,
+  isLoadingSelector,
+  moviesSelector,
+} from '../store/selectors';
 
 @Component({
   selector: 'app-movies-container',
@@ -7,18 +16,16 @@ import { MovieService } from 'src/app/shared/services/movie/movie.service';
   styleUrls: ['./movies-container.component.scss'],
 })
 export class MoviesContainerComponent {
-  constructor(private _movieService: MovieService) {}
+  moviesLoading$: Observable<boolean>;
+  movies$: Observable<Movie[]>;
+  error$: Observable<string | null>;
+  constructor(private _movieService: MovieService, private _store: Store) {
+    this.moviesLoading$ = this._store.pipe(select(isLoadingSelector));
+    this.movies$ = this._store.pipe(select(moviesSelector));
+    this.error$ = this._store.pipe(select(errorSelector));
+  }
 
   searchMovie(movie: string) {
-    // TODO:  CONNECT THIS TO THE STORE FOR SETTING PARAM 'CURRENT_MOVIES FROM [] TO THE AMOUNT OF MOVIES RECIEVED FROM THE ENDPOINT CALL
-
-    this._movieService.getMovies(movie).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this._store.dispatch(MoviesActions.getMovies({ title: movie }));
   }
 }

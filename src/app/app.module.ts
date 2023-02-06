@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatMenuModule,
     StoreModule.forRoot({}),
-    // EffectsModule.forRoot([]),
+    EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: enviroment.production,

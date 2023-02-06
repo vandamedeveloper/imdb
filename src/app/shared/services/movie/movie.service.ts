@@ -13,9 +13,10 @@ export class MovieService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  getMovies(): Observable<Movie[]> {
+  getMovies(movie: string): Observable<Movie[]> {
+    const movieTitle = movie.split(' ').join('+');
     return this._httpClient.get<Movie[]>(
-      `${this._API_URL}${this._API_KEY}&s=pirates+of+the+caribbean`
+      `${this._API_URL}${this._API_KEY}&s=${movieTitle}`
     );
   }
 }

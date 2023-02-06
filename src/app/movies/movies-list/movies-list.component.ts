@@ -7,16 +7,7 @@ import { MovieService } from 'src/app/shared/services/movie/movie.service';
   styleUrls: ['./movies-list.component.scss'],
 })
 export class MoviesListComponent implements OnInit {
-  constructor(private _moviesService: MovieService) {}
+  constructor(private _movieService: MovieService) {}
 
-  ngOnInit() {
-    this._moviesService.getMovies().subscribe(
-      (data) => {
-        console.log('data: ', data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+  ngOnInit() {}
 }

@@ -4,7 +4,7 @@
         </app-movies-search>
         <section>
             <div *ngIf="moviesLoading$ | async">Loading movies...</div>
-            <app-movies-list></app-movies-list>
+            <app-movies-list [movies]="movies$ | async"></app-movies-list>
         </section>
     </div>
 </section>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie/movie.interface';
-import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import { AppState } from 'src/app/types/app-state.interface';
 import * as MoviesActions from '../store/actions';
 import {

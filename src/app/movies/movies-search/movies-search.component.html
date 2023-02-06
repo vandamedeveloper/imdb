@@ -1,9 +1,9 @@
-<div class="d-flex justify-content--center">
+<div class="d-flex justify-content--center" [formGroup]="form">
     <mat-form-field appearance="outline" class="max-w-500 m-r-10">
         <mat-label>Search for a movie</mat-label>
-        <input matInput placeholder="Ex. Harry Potter" autocomplete="off">
+        <input matInput placeholder="Ex. Harry Potter" autocomplete="off" formControlName="movie">
     </mat-form-field>
-    <button mat-fab class="btn-red">
+    <button mat-fab class="btn-red" (click)="searchForMovie()">
         <mat-icon>search</mat-icon>
     </button>
 </div>

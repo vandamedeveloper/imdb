@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { reducers } from './store/reducers';
     MatInputModule,
     MatButtonModule,
     StoreModule.forFeature('movies', reducers),
+    ReactiveFormsModule,
   ],
 })
 export class MoviesModule {}

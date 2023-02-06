@@ -12,6 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { enviroment } from './enviroments/enviroment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -29,6 +30,7 @@ import { enviroment } from './enviroments/enviroment';
       logOnly: enviroment.production,
       autoPause: true,
     }),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

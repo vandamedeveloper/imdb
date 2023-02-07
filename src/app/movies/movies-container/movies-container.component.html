@@ -2,9 +2,10 @@
     <div class="container d-flex d-flex__column align-items--center">
         <app-movies-search class="w-full" (onSearch)="searchMovie($event)">
         </app-movies-search>
-        <section>
-            <app-movies-list [movies]="movies$ | async"
-                *ngIf="!(moviesLoading$ | async) && (movies$ | async).length > 0"></app-movies-list>
+        <section *ngIf="!(moviesLoading$ | async) && (movies$ | async)['Search']?.length > 0">
+            <app-movies-list [movies]="(movies$ | async)['Search']"></app-movies-list>
+            <app-paginator [length]="(movies$ | async)['totalResults']" [pageSize]="(movies$ | async)['Search']?.length"
+                (pageChange)="loadPage($event)"></app-paginator>
         </section>
         <div *ngIf="(moviesLoading$ | async)"
             style="position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);">

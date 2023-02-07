@@ -10,12 +10,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { MatCardModule } from '@angular/material/card';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { MoviesEffects } from './store/effects';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,7 @@ import { MoviesEffects } from './store/effects';
     MovieComponent,
     MoviesListComponent,
     MoviesSearchComponent,
+    PaginatorComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +40,7 @@ import { MoviesEffects } from './store/effects';
     ReactiveFormsModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
   ],
 })
 export class MoviesModule {}

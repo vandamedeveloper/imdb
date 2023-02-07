@@ -31,4 +31,6 @@ export class MoviesContainerComponent {
   searchMovie(movie: string) {
     this._store.dispatch(MoviesActions.getMovies({ title: movie }));
   }
+
+  loadPage(page: number) {}
 }

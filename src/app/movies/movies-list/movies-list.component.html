@@ -1,1 +1,5 @@
-<p>movies-list works!</p>
+<div class="container d-flex justify-content--center" style="flex-wrap: wrap;">
+    <mat-card *ngFor="let movie of movies" class="max-w-250 m-10">
+        <app-movie [movie]="movie"></app-movie>
+    </mat-card>
+</div>

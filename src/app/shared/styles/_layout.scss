@@ -10,7 +10,7 @@
     margin-right: #{$i} + "px";
   }
   .m-b-#{$i} {
-    margin-bottom: #{$i} + "px";
+    margin-bottom: #{$i} + "px" !important;
   }
   .m-l-#{$i} {
     margin-left: #{$i} + "px";
@@ -35,6 +35,9 @@
   //custom height
   .h-#{$i} {
     height: #{$i} + "px";
+  }
+  .max-h-#{$i} {
+    max-height: #{$i} + "px";
   }
   //custom width
   .w-#{$i} {
@@ -67,6 +70,9 @@
   &--center {
     align-items: center;
   }
+  &--start {
+    align-items: flex-start;
+  }
 }
 .justify-content {
   display: flex;
@@ -76,4 +82,18 @@
   &--center {
     justify-content: center;
   }
+}
+
+.img-object-center {
+  object-fit: cover;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.search-field .mat-form-field-outline {
+  color: green;
 }

@@ -9,7 +9,12 @@
     <button mat-button>SHARE</button>
 </mat-card-actions> -->
 
-<img mat-card-image [src]="movie.Poster" alt="Poster of the movie" class="w-250 h-300 img-object-center">
+<img mat-card-image *ngIf="movie.Poster !== 'N/A'; else customPoster" [src]="movie.Poster" alt="Poster of the movie"
+    class="w-250 h-300 img-object-center">
+<ng-template #customPoster>
+    <img mat-card-image src="https://eapp.org/wp-content/uploads/2018/05/poster_placeholder.jpg"
+        alt="Poster of the movie" class="w-250 h-300 img-object-center">
+</ng-template>
 <mat-card-content>
     <h3 class="ellipsis"><strong>{{movie.Title}}</strong></h3>
     <p>Year: {{movie.Year}}</p>

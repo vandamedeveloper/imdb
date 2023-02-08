@@ -6,6 +6,11 @@ export const getMovies = createAction(
   props<{ title: string }>()
 );
 
+export const getMoviePage = createAction(
+  '[MOVIES] Get Movie Page',
+  props<{ title: string; page: number }>()
+);
+
 // failure vs success actions
 export const getMoviesSuccess = createAction(
   '[MOVIES] Get Movies Success',

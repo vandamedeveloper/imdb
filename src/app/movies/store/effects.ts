@@ -12,12 +12,48 @@ export class MoviesEffects {
       mergeMap(({ title }) => {
         return this._movieService.getMovies(title).pipe(
           map((movies: Movie[]) => {
-            if (movies == undefined || movies.length === 0) {
+            if (
+              movies['Search'] == undefined ||
+              movies['Search'].length === 0
+            ) {
               return MoviesActions.getMoviesFailure({
                 error: 'No movies found with this title.',
               });
             } else {
-              return MoviesActions.getMoviesSuccess({ movies: movies });
+              return MoviesActions.getMoviesSuccess({
+                movies: movies,
+              });
+            }
+          }),
+          catchError((error) =>
+            of(
+              MoviesActions.getMoviesFailure({
+                error: 'Ooups! An error occurred. Try again later..',
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+
+  $getMoviePage = createEffect(() =>
+    this._actions$.pipe(
+      ofType(MoviesActions.getMoviePage),
+      mergeMap(({ title, page }) => {
+        return this._movieService.getMovies(title, page).pipe(
+          map((movies: Movie[]) => {
+            if (
+              movies['Search'] == undefined ||
+              movies['Search'].length === 0
+            ) {
+              return MoviesActions.getMoviesFailure({
+                error: 'No movies found with this title.',
+              });
+            } else {
+              return MoviesActions.getMoviesSuccess({
+                movies: movies,
+              });
             }
           }),
           catchError((error) =>

@@ -24,7 +24,7 @@ export class MoviesContainerComponent {
   movieTitle: string;
   slicedMovies: Movie[];
 
-  movieSize: number = 10;
+  movieSize: number = 3;
   currentPageIndex: number = 0;
 
   constructor(private _store: Store<AppState>) {
@@ -55,10 +55,9 @@ export class MoviesContainerComponent {
   }
 
   // getMoviesSliced(movies: Movie[]): Movie[] {
-  //   this.slicedMovies = movies;
-  //   return movies['Search'].slice(
-  //     this.currentPage * this.movieSize,
-  //     this.currentPage * this.movieSize + this.movieSize
+  //   return movies.slice(
+  //     this.currentPageIndex * this.movieSize,
+  //     this.currentPageIndex * this.movieSize + this.movieSize
   //   );
   // }
 }

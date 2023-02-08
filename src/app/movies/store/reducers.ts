@@ -19,12 +19,14 @@ export const reducers = createReducer(
     loadingMovies: true,
     error: null,
   })),
-
+  on(MoviesActions.getMoviePage, (state) => ({
+    ...state,
+    loadingMovies: true,
+  })),
   //success vs failure reducers
   on(MoviesActions.getMoviesSuccess, (state, action) => ({
     ...state,
     movies: action.movies,
-    error: null,
     loadingMovies: false,
   })),
   on(MoviesActions.getMoviesFailure, (state, action) => ({

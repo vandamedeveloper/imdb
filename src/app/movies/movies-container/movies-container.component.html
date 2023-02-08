@@ -3,11 +3,13 @@
         <app-movies-search class="w-full" (onSearch)="searchMovie($event)">
         </app-movies-search>
         <section *ngIf="!(moviesLoading$ | async) && (movies$ | async)['Search']?.length > 0">
-            <app-movies-list [movies]="(movies$ | async)['Search']"></app-movies-list>
-            <app-paginator [length]="(movies$ | async)['totalResults']" [pageSize]="(movies$ | async)['Search']?.length"
-                (pageChange)="loadPage($event)"></app-paginator>
+            <app-movies-list [movies]="(movies$ | async)['Search']">
+            </app-movies-list>
+            <app-paginator [length]="(movies$ | async)['totalResults']" (pageChange)="loadPage($event)"
+                [pageIndex]="currentPageIndex">
+            </app-paginator>
         </section>
-        <div *ngIf="(moviesLoading$ | async)"
+        <div *ngIf=" (moviesLoading$ | async)"
             style="position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);">
             <mat-spinner color="warn"></mat-spinner>
         </div>

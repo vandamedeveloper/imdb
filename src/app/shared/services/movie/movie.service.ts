@@ -15,9 +15,12 @@ export class MovieService {
 
   getMovies(movie: string, page?: number): Observable<Movie[]> {
     const movieTitle = movie?.split(' ').join('+');
-    return this._httpClient.get<Movie[]>(
-      `${this._API_URL}${this._API_KEY}&s=${movieTitle}`
-    );
-    // .pipe(map((data) => data['Search']));
+    let url = `${this._API_URL}${this._API_KEY}&s=${movieTitle}`;
+
+    if (page) {
+      url += `&page=${page}`;
+    }
+
+    return this._httpClient.get<Movie[]>(url);
   }
 }

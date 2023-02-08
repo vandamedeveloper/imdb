@@ -37,6 +37,37 @@ export class MoviesEffects {
     )
   );
 
+  $getMoviePage = createEffect(() =>
+    this._actions$.pipe(
+      ofType(MoviesActions.getMoviePage),
+      mergeMap(({ title, page }) => {
+        return this._movieService.getMovies(title, page).pipe(
+          map((movies: Movie[]) => {
+            if (
+              movies['Search'] == undefined ||
+              movies['Search'].length === 0
+            ) {
+              return MoviesActions.getMoviesFailure({
+                error: 'No movies found with this title.',
+              });
+            } else {
+              return MoviesActions.getMoviesSuccess({
+                movies: movies,
+              });
+            }
+          }),
+          catchError((error) =>
+            of(
+              MoviesActions.getMoviesFailure({
+                error: 'Ooups! An error occurred. Try again later..',
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+
   constructor(
     private _actions$: Actions,
     private _movieService: MovieService

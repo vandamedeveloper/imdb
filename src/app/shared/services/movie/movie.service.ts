@@ -14,7 +14,7 @@ export class MovieService {
   constructor(private _httpClient: HttpClient) {}
 
   getMovies(movie: string, page?: number): Observable<Movie[]> {
-    const movieTitle = movie?.split(' ').join('+');
+    const movieTitle = movie?.trim().split(' ').join('+');
     let url = `${this._API_URL}${this._API_KEY}&s=${movieTitle}`;
 
     if (page) {

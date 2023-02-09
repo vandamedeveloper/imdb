@@ -39,9 +39,6 @@
   .max-h-#{$i} {
     max-height: #{$i} + "px";
   }
-  .h-full {
-    height: calc(100vh - 70px);
-  }
   //custom width
   .w-#{$i} {
     width: #{$i} + "px";

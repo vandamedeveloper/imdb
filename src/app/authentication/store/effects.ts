@@ -14,11 +14,26 @@ export class AuthEffects {
       switchMap(({ username, email, password }) =>
         this._authService.signup(username, email, password).pipe(
           map((user: User) => {
-            console.log(user);
             return AuthActions.signupSuccess({ user });
           }),
           catchError((error) =>
             of(AuthActions.signupFailure({ error: error.message }))
+          )
+        )
+      )
+    )
+  );
+
+  login$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(AuthActions.login),
+      switchMap(({ email, password }) =>
+        this._authService.login(email, password).pipe(
+          map((user: User) => {
+            return AuthActions.loginSuccess({ user });
+          }),
+          catchError((error) =>
+            of(AuthActions.loginFailure({ error: error.message }))
           )
         )
       )

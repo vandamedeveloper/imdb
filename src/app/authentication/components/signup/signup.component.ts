@@ -11,7 +11,7 @@ import * as AuthActions from '../../store/actions';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  loginForm: FormGroup;
+  signupForm: FormGroup;
   hide = true;
 
   constructor(
@@ -25,7 +25,7 @@ export class SignupComponent {
   }
 
   _initializeForm() {
-    this.loginForm = this._fBuilder.group({
+    this.signupForm = this._fBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -33,11 +33,11 @@ export class SignupComponent {
   }
 
   onSignup() {
-    if (this.loginForm.valid) {
+    if (this.signupForm.valid) {
       console.log('valid');
-      const username = this.loginForm.controls['username'].value;
-      const email = this.loginForm.controls['username'].value;
-      const password = this.loginForm.controls['username'].value;
+      const username = this.signupForm.controls['username'].value;
+      const email = this.signupForm.controls['email'].value;
+      const password = this.signupForm.controls['password'].value;
       //dispatch a signup event on the store
       this._store.dispatch(AuthActions.signup({ username, email, password }));
     }

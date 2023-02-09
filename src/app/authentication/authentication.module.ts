@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { authReducer } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
@@ -27,6 +28,7 @@ import { AuthEffects } from './store/effects';
     MatButtonModule,
     StoreModule.forFeature('auth', authReducer),
     EffectsModule.forFeature([AuthEffects]),
+    MatProgressBarModule,
   ],
 })
 export class AuthenticationModule {}

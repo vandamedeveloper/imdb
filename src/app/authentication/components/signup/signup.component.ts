@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { User } from 'src/app/shared/models/user/user';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { AppState } from 'src/app/types/app-state.interface';
 import * as AuthActions from '../../store/actions';
+import { isLoadingSelector } from '../../store/selectors';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -13,12 +13,11 @@ import * as AuthActions from '../../store/actions';
 export class SignupComponent {
   signupForm: FormGroup;
   hide = true;
+  userLoading$: Observable<boolean>;
 
-  constructor(
-    private _fBuilder: FormBuilder,
-    private _router: Router,
-    private _store: Store<AppState>
-  ) {}
+  constructor(private _fBuilder: FormBuilder, private _store: Store<AppState>) {
+    this.userLoading$ = this._store.pipe(select(isLoadingSelector));
+  }
 
   ngOnInit(): void {
     this._initializeForm();
@@ -34,7 +33,6 @@ export class SignupComponent {
 
   onSignup() {
     if (this.signupForm.valid) {
-      console.log('valid');
       const username = this.signupForm.controls['username'].value;
       const email = this.signupForm.controls['email'].value;
       const password = this.signupForm.controls['password'].value;

@@ -7,7 +7,7 @@ export const userSelector = createSelector(
   selectAuthFeature,
   (state) => state.user
 );
-export const isLoadingelector = createSelector(
+export const isLoadingSelector = createSelector(
   selectAuthFeature,
   (state) => state.loadingUser
 );

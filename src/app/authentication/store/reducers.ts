@@ -10,34 +10,34 @@ export const initialState: AuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.login, (state) => ({ ...state, isLoading: true })),
+  on(AuthActions.login, (state) => ({ ...state, loadingUser: true })),
   on(AuthActions.loginSuccess, (state, { user }) => ({
     ...state,
-    isLoading: false,
+    loadingUser: false,
     user,
     error: null,
   })),
   on(AuthActions.loginFailure, (state, { error }) => ({
     ...state,
-    isLoading: false,
+    loadingUser: false,
     error,
   })),
-  on(AuthActions.signup, (state) => ({ ...state, isLoading: true })),
+  on(AuthActions.signup, (state) => ({ ...state, loadingUser: true })),
   on(AuthActions.signupSuccess, (state, { user }) => ({
     ...state,
-    isLoading: false,
+    loadingUser: false,
     user,
     error: null,
   })),
   on(AuthActions.signupFailure, (state, { error }) => ({
     ...state,
-    isLoading: false,
+    loadingUser: false,
     error,
   })),
   on(AuthActions.logout, (state) => ({
     ...state,
     user: null,
-    isLoading: false,
+    loadingUser: false,
     error: null,
   }))
 );

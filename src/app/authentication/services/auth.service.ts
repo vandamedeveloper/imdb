@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { enviroment } from 'src/app/enviroments/enviroment';
 import { User } from 'src/app/shared/models/user/user';
 
@@ -18,7 +18,9 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient.post<User>(`${this.basePath}/users/signup`, body);
+    return this._httpClient
+      .post<User>(`${this.basePath}/users/signup`, body)
+      .pipe(delay(3000));
   }
 
   login(email: string, password: string): Observable<User> {
@@ -26,6 +28,8 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient.post<User>(`${this.basePath}/users/login`, body);
+    return this._httpClient
+      .post<User>(`${this.basePath}/users/login`, body)
+      .pipe(delay(3000));
   }
 }

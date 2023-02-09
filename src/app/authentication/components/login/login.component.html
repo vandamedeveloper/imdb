@@ -23,7 +23,8 @@
                 <button mat-raised-button class="btn-red" type="submit">Login</button>
             </form>
 
-
         </mat-card-content>
+        <mat-progress-bar mode="indeterminate" class="m-t-20" *ngIf="userLoading$ | async"></mat-progress-bar>
+
     </mat-card>
 </div>

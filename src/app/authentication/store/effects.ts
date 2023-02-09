@@ -22,8 +22,10 @@ export class AuthEffects {
       switchMap(({ email, password }) =>
         this._authService.login(email, password).pipe(
           tap(() => this._router.navigate([''])),
-          map((user: User) => {
-            return AuthActions.loginSuccess({ user });
+          map((result) => {
+            const user: User = result['user'];
+            const token: string = result['token'];
+            return AuthActions.loginSuccess({ user, token });
           }),
           catchError((error) => {
             this._router.navigate([this.loginFailURL]);
@@ -40,8 +42,10 @@ export class AuthEffects {
       switchMap(({ username, email, password }) =>
         this._authService.signup(username, email, password).pipe(
           tap(() => this._router.navigate([''])),
-          map((user: User) => {
-            return AuthActions.signupSuccess({ user });
+          map((result) => {
+            const user: User = result['user'];
+            const token: string = result['token'];
+            return AuthActions.signupSuccess({ user, token });
           }),
           catchError((error) => {
             this._router.navigate([this.signupFailURL]);

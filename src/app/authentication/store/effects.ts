@@ -15,10 +15,10 @@ export class AuthEffects {
         this._authService.signup(username, email, password).pipe(
           map((user: User) => {
             console.log(user);
-            return AuthActions.loginSuccess({ user });
+            return AuthActions.signupSuccess({ user });
           }),
           catchError((error) =>
-            of(AuthActions.loginFailure({ error: error.message }))
+            of(AuthActions.signupFailure({ error: error.message }))
           )
         )
       )

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { User } from 'src/app/shared/models/user/user';
-import { AuthService } from '../../services/auth.service';
-
+import { AppState } from 'src/app/types/app-state.interface';
+import * as AuthActions from '../../store/actions';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -15,8 +16,8 @@ export class SignupComponent {
 
   constructor(
     private _fBuilder: FormBuilder,
-    private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -37,20 +38,8 @@ export class SignupComponent {
       const username = this.loginForm.controls['username'].value;
       const email = this.loginForm.controls['username'].value;
       const password = this.loginForm.controls['username'].value;
-
-      const user: User = {
-        username,
-        email,
-        password,
-      };
-      this._authService.signup(username, email, password).subscribe({
-        next: (user) => {
-          //TODO: ADD USER TO AUTH STORE SLICE
-          //REDIRECT USER TO MAIN PAGE
-          this._router.navigate(['']);
-        },
-        error: (error) => console.log(error),
-      });
+      //dispatch a signup event on the store
+      this._store.dispatch(AuthActions.signup({ username, email, password }));
     }
   }
 }

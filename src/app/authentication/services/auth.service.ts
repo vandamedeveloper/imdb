@@ -12,7 +12,12 @@ export class AuthService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  signup(user: User): Observable<User> {
-    return this._httpClient.post(`${this.basePath}/users/signup`, user);
+  signup(username: string, email: string, password: string): Observable<User> {
+    const body = {
+      username,
+      email,
+      password,
+    };
+    return this._httpClient.post<User>(`${this.basePath}/users/signup`, body);
   }
 }

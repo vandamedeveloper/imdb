@@ -1,6 +1,5 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -13,6 +12,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { enviroment } from './enviroments/enviroment';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { MoviesModule } from './movies/movies.module';
+import { AuthenticationModule } from './authentication/authentication.module';
+
+const MATERIAL_MODULES = [MatButtonModule, MatIconModule, MatMenuModule];
+const APP_MODULES = [MoviesModule, AuthenticationModule];
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -20,10 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
     StoreModule.forRoot({}),
+    ...MATERIAL_MODULES,
+    ...APP_MODULES,
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -32,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

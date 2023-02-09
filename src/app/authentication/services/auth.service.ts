@@ -20,4 +20,12 @@ export class AuthService {
     };
     return this._httpClient.post<User>(`${this.basePath}/users/signup`, body);
   }
+
+  login(email: string, password: string): Observable<User> {
+    const body = {
+      email,
+      password,
+    };
+    return this._httpClient.post<User>(`${this.basePath}/users/login`, body);
+  }
 }

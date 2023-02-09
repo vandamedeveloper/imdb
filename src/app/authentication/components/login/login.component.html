@@ -1,1 +1,29 @@
-<p>login works!</p>
+<div class="container d-flex align-items--center justify-content--center h-full">
+    <mat-card class="max-w-400 w-full">
+        <mat-card-header class="d-flex align-items--center justify-content--center">
+            <mat-card-title style="text-align: center;">Login</mat-card-title>
+            <mat-card-subtitle style="text-align: center;">Enter your credentials</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="m-t-20" style="text-align: center;">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <button mat-raised-button class="btn-red" type="submit">Login</button>
+            </form>
+
+
+        </mat-card-content>
+    </mat-card>
+</div>

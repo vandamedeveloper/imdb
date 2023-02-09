@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user/user';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,7 +15,8 @@ export class SignupComponent {
 
   constructor(
     private _fBuilder: FormBuilder,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,8 +43,12 @@ export class SignupComponent {
         email,
         password,
       };
-      this._authService.signup(user).subscribe({
-        next: (user) => console.log(user),
+      this._authService.signup(username, email, password).subscribe({
+        next: (user) => {
+          //TODO: ADD USER TO AUTH STORE SLICE
+          //REDIRECT USER TO MAIN PAGE
+          this._router.navigate(['']);
+        },
         error: (error) => console.log(error),
       });
     }

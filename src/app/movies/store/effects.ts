@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, finalize, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie/movie.interface';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import * as MoviesActions from './actions';

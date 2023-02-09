@@ -9,6 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { authReducer } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
@@ -21,6 +25,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    StoreModule.forFeature('auth', authReducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
 })
 export class AuthenticationModule {}

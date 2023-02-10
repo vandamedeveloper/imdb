@@ -17,7 +17,6 @@ export const loginFailure = createAction(
 
 // RECOVER USER INFO
 
-//LOGIN
 export const userInfo = createAction('[Auth] UserInfo');
 export const userInfoSuccess = createAction(
   '[Auth] UserInfo Success',

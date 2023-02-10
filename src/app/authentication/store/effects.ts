@@ -25,6 +25,7 @@ export class AuthEffects {
           map((result) => {
             const user: User = result['user'];
             const token: string = result['token'];
+            this._authService.setToken(token);
             return AuthActions.loginSuccess({ user, token });
           }),
           catchError((error) => {
@@ -45,6 +46,7 @@ export class AuthEffects {
           map((result) => {
             const user: User = result['user'];
             const token: string = result['token'];
+            this._authService.setToken(token);
             return AuthActions.signupSuccess({ user, token });
           }),
           catchError((error) => {
@@ -53,6 +55,22 @@ export class AuthEffects {
           })
         )
       )
+    )
+  );
+
+  logout$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(AuthActions.logout),
+      tap(() => {
+        this._authService.removeToken();
+        this._router.navigate(['auth']);
+      }),
+      map(() => {
+        return AuthActions.logoutSuccess();
+      }),
+      catchError((error) => {
+        return of(AuthActions.logoutFailure({ error: error.message }));
+      })
     )
   );
 }

@@ -18,9 +18,7 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient
-      .post<User>(`${this.basePath}/users/signup`, body)
-      .pipe(delay(3000));
+    return this._httpClient.post<User>(`${this.basePath}/users/signup`, body);
   }
 
   login(email: string, password: string): Observable<User> {
@@ -28,8 +26,14 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient
-      .post<User>(`${this.basePath}/users/login`, body)
-      .pipe(delay(3000));
+    return this._httpClient.post<User>(`${this.basePath}/users/login`, body);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem('token');
   }
 }

@@ -8,7 +8,7 @@ import { User } from 'src/app/shared/models/user/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private basePath = enviroment.serverUrl;
+  private _basePath = enviroment.serverUrl;
 
   constructor(private _httpClient: HttpClient) {}
 
@@ -18,7 +18,7 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient.post<User>(`${this.basePath}/users/signup`, body);
+    return this._httpClient.post<User>(`${this._basePath}/users/signup`, body);
   }
 
   login(email: string, password: string): Observable<User> {
@@ -26,7 +26,7 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient.post<User>(`${this.basePath}/users/login`, body);
+    return this._httpClient.post<User>(`${this._basePath}/users/login`, body);
   }
 
   setToken(token: string): void {
@@ -35,5 +35,9 @@ export class AuthService {
 
   removeToken(): void {
     localStorage.removeItem('token');
+  }
+
+  getUserInfo(): Observable<User> {
+    return this._httpClient.get<User>(`${this._basePath}/users/me`);
   }
 }

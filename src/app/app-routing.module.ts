@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { TokenGuard } from './shared/guards/token.guard';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
-    loadChildren: () =>
-      import('./movies/movies.module').then((m) => m.MoviesModule),
+    canActivate: [TokenGuard],
+    children: [
+      {
+        path: '',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import('./movies/movies.module').then((m) => m.MoviesModule),
+      },
+    ],
   },
   {
     path: 'auth',

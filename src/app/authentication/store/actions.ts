@@ -15,6 +15,18 @@ export const loginFailure = createAction(
   props<{ error: string }>()
 );
 
+// RECOVER USER INFO
+
+export const userInfo = createAction('[Auth] UserInfo');
+export const userInfoSuccess = createAction(
+  '[Auth] UserInfo Success',
+  props<{ user: User }>()
+);
+export const userInfoFailure = createAction(
+  '[Auth] UserInfo Failure',
+  props<{ error: string }>()
+);
+
 //SIGNUP
 export const signup = createAction(
   '[Auth] Signup',
@@ -33,3 +45,8 @@ export const signupFailure = createAction(
 
 //LOGOUT
 export const logout = createAction('[Auth] Logout');
+export const logoutSuccess = createAction('[Auth] Logout Success');
+export const logoutFailure = createAction(
+  '[Auth] Logout Failure',
+  props<{ error: string }>()
+);

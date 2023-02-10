@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { MoviesModule } from './movies/movies.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { TokenGuard } from './shared/guards/token.guard';
 
 const MATERIAL_MODULES = [MatButtonModule, MatIconModule, MatMenuModule];
 const APP_MODULES = [MoviesModule, AuthenticationModule];
@@ -36,7 +37,7 @@ const APP_MODULES = [MoviesModule, AuthenticationModule];
     }),
     HttpClientModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, TokenGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

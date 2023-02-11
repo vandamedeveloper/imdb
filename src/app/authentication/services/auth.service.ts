@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { delay, Observable } from 'rxjs';
@@ -19,7 +19,10 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient.post<Token>(`${this._basePath}/users/signup`, body);
+    return this._httpClient.post<Token>(
+      `${this._basePath}/users/signup/token`,
+      body
+    );
   }
 
   login(email: string, password: string): Observable<Token> {
@@ -27,7 +30,10 @@ export class AuthService {
       email,
       password,
     };
-    return this._httpClient.post<Token>(`${this._basePath}/users/login`, body);
+    return this._httpClient.post<Token>(
+      `${this._basePath}/users/login/token`,
+      body
+    );
   }
 
   setToken(token: string): void {
@@ -39,6 +45,13 @@ export class AuthService {
   }
 
   getUserInfo(): Observable<User> {
-    return this._httpClient.get<User>(`${this._basePath}/users/userinfo`);
+    let headers = new HttpHeaders();
+    headers = headers.set(
+      'Authorization',
+      `Bearer ${localStorage.getItem('token')}`
+    );
+    return this._httpClient.get<User>(`${this._basePath}/users/userinfo`, {
+      headers,
+    });
   }
 }

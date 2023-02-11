@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { logout } from 'src/app/authentication/store/actions';
+import { userSelector } from 'src/app/authentication/store/selectors';
 import { AppState } from 'src/app/types/app-state.interface';
+import { User } from '../../models/user/user';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +12,11 @@ import { AppState } from 'src/app/types/app-state.interface';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  constructor(private _store: Store<AppState>) {}
+  user$: Observable<User>;
+
+  constructor(private _store: Store<AppState>) {
+    this.user$ = this._store.pipe(select(userSelector));
+  }
 
   onLogout() {
     this._store.dispatch(logout());

@@ -24,7 +24,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this._authSerivce.getUserInfo().pipe(
       tap((user) => {
-        this._store.dispatch(userInfoSuccess({ user: user['user'] }));
+        this._store.dispatch(userInfoSuccess({ user }));
         return true;
       }),
       map(() => true),

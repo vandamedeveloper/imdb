@@ -24,7 +24,7 @@ export class AuthEffects {
         this._authService.login(email, password).pipe(
           tap(() => this._router.navigate([''])),
           map((result) => {
-            const token: string = result['token'];
+            const token: string = result['access_token'];
             this._authService.setToken(token);
             return AuthActions.loginSuccess({ token });
           }),
@@ -44,7 +44,7 @@ export class AuthEffects {
         this._authService.signup(username, email, password).pipe(
           tap(() => this._router.navigate([''])),
           map((result) => {
-            const token: string = result['token'];
+            const token: string = result['access_token'];
             this._authService.setToken(token);
             return AuthActions.signupSuccess({ token });
           }),

@@ -1,3 +1,4 @@
+import { Token } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -23,10 +24,9 @@ export class AuthEffects {
         this._authService.login(email, password).pipe(
           tap(() => this._router.navigate([''])),
           map((result) => {
-            const user: User = result['user'];
             const token: string = result['token'];
             this._authService.setToken(token);
-            return AuthActions.loginSuccess({ user, token });
+            return AuthActions.loginSuccess({ token });
           }),
           catchError((error) => {
             this._router.navigate([this.loginFailURL]);
@@ -44,10 +44,9 @@ export class AuthEffects {
         this._authService.signup(username, email, password).pipe(
           tap(() => this._router.navigate([''])),
           map((result) => {
-            const user: User = result['user'];
             const token: string = result['token'];
             this._authService.setToken(token);
-            return AuthActions.signupSuccess({ user, token });
+            return AuthActions.signupSuccess({ token });
           }),
           catchError((error) => {
             this._router.navigate([this.signupFailURL]);

@@ -33,9 +33,7 @@ export class SignupComponent {
 
   onSignup() {
     if (this.signupForm.valid) {
-      const username = this.signupForm.controls['username'].value;
-      const email = this.signupForm.controls['email'].value;
-      const password = this.signupForm.controls['password'].value;
+      const { username, email, password } = this.signupForm.value;
       //dispatch a signup event on the store
       this._store.dispatch(AuthActions.signup({ username, email, password }));
     }

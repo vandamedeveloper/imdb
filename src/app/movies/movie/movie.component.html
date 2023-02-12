@@ -20,7 +20,7 @@
     <p>Year: {{movie.Year}}</p>
 </mat-card-content>
 <mat-card-actions>
-    <button mat-icon-button class="text-color-red">
-        <mat-icon>favorite_outline</mat-icon>
+    <button mat-icon-button class="text-color-red" (click)="likeMovie(movie.imdbID)">
+        <mat-icon>{{isFavorite ? 'favorite' : 'favorite_outline'}}</mat-icon>
     </button>
 </mat-card-actions>

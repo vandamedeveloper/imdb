@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie/movie.interface';
 
 @Component({
@@ -8,4 +9,11 @@ import { Movie } from 'src/app/shared/models/movie/movie.interface';
 })
 export class MovieComponent {
   @Input() movie: Movie;
+  @Input() isFavorite: boolean;
+
+  @Output() movieLiked: EventEmitter<string> = new EventEmitter<string>();
+
+  likeMovie(movieId: string) {
+    this.movieLiked.emit(movieId);
+  }
 }

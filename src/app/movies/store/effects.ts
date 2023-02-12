@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, switchMap } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie/movie.interface';
 import { MovieService } from 'src/app/shared/services/movie/movie.service';
 import * as MoviesActions from './actions';
@@ -60,6 +60,29 @@ export class MoviesEffects {
             of(
               MoviesActions.getMoviesFailure({
                 error: 'Ooups! An error occurred. Try again later..',
+              })
+            )
+          )
+        );
+      })
+    )
+  );
+
+  likeMovie$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(MoviesActions.likeMovie),
+      switchMap(({ movieId }) => {
+        return this._movieService.likeMovie(movieId).pipe(
+          map((movie: Movie) => {
+            return MoviesActions.likeMovieSuccess({
+              movie: movie,
+            });
+          }),
+          catchError((error) =>
+            of(
+              MoviesActions.likeMovieFailure({
+                error:
+                  'Ooups! An error occurred. Try again later..' + error.message,
               })
             )
           )

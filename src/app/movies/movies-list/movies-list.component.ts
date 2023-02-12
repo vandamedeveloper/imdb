@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Movie } from 'src/app/shared/models/movie/movie.interface';
 
 @Component({
@@ -8,4 +8,20 @@ import { Movie } from 'src/app/shared/models/movie/movie.interface';
 })
 export class MoviesListComponent {
   @Input() movies: Movie[];
+  @Input() favorites: Movie[];
+  @Output() onMovieLiked: EventEmitter<string> = new EventEmitter<string>();
+
+  movieLiked(movieId: string) {
+    this.onMovieLiked.emit(movieId);
+  }
+
+  isFavorite(id) {
+    let isFavorite = false;
+    this.favorites.map((movieId) => {
+      if (movieId == id) {
+        isFavorite = true;
+      }
+    });
+    return isFavorite;
+  }
 }

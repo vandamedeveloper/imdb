@@ -5,4 +5,5 @@ export interface MovieState {
   movies: Movie[];
   movieSearched: boolean;
   error: string | null;
+  likedMovies: Movie[];
 }

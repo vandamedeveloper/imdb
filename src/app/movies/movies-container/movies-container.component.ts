@@ -6,6 +6,7 @@ import { AppState } from 'src/app/types/app-state.interface';
 import * as MoviesActions from '../store/actions';
 import {
   errorSelector,
+  favoritesSelector,
   isLoadingSelector,
   movieSearchedSelector,
   moviesSelector,
@@ -19,6 +20,7 @@ import {
 export class MoviesContainerComponent {
   moviesLoading$: Observable<boolean>;
   movies$: Observable<Movie[]>;
+  favorites$: Observable<Movie[]>;
   movieSearched$: Observable<boolean>;
   error$: Observable<string | null>;
   movieTitle: string;
@@ -32,6 +34,7 @@ export class MoviesContainerComponent {
     this.movies$ = this._store.pipe(select(moviesSelector));
     this.error$ = this._store.pipe(select(errorSelector));
     this.movieSearched$ = this._store.pipe(select(movieSearchedSelector));
+    this.favorites$ = this._store.pipe(select(favoritesSelector));
   }
 
   searchMovie(movie: string) {
@@ -54,10 +57,7 @@ export class MoviesContainerComponent {
     this.movieSize = size;
   }
 
-  // getMoviesSliced(movies: Movie[]): Movie[] {
-  //   return movies.slice(
-  //     this.currentPageIndex * this.movieSize,
-  //     this.currentPageIndex * this.movieSize + this.movieSize
-  //   );
-  // }
+  onMovieLiked(movieId: string) {
+    this._store.dispatch(MoviesActions.likeMovie({ movieId }));
+  }
 }

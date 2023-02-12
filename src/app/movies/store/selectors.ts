@@ -21,3 +21,8 @@ export const movieSearchedSelector = createSelector(
   selectFeature,
   (state) => state.movieSearched
 );
+
+export const favoritesSelector = createSelector(
+  selectFeature,
+  (state) => state.likedMovies
+);

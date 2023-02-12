@@ -3,7 +3,8 @@
         <app-movies-search class="w-full" (onSearch)="searchMovie($event)">
         </app-movies-search>
         <section *ngIf="!(moviesLoading$ | async) && (movies$ | async)['Search']?.length > 0">
-            <app-movies-list [movies]="(movies$ | async)['Search']">
+            <app-movies-list [movies]="(movies$ | async)['Search']" (onMovieLiked)="onMovieLiked($event)"
+                [favorites]="favorites$ |async">
             </app-movies-list>
             <app-paginator [length]="(movies$ | async)['totalResults']" (pageChange)="loadPage($event)"
                 [pageIndex]="currentPageIndex">

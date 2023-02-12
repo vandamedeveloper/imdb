@@ -20,3 +20,16 @@ export const getMoviesFailure = createAction(
   '[MOVIES] Get Movies Failure',
   props<{ error: string }>()
 );
+
+export const likeMovie = createAction(
+  '[MOVIES] Like Movie',
+  props<{ movieId: string }>()
+);
+export const likeMovieSuccess = createAction(
+  '[MOVIES] Like Movie Success',
+  props<{ movie: Movie }>()
+);
+export const likeMovieFailure = createAction(
+  '[MOVIES] Like Movie Failure',
+  props<{ error: string }>()
+);

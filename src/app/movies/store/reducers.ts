@@ -8,6 +8,7 @@ export const initialState: MovieState = {
   movies: [],
   error: null,
   movieSearched: false,
+  likedMovies: [],
 };
 
 export const reducers = createReducer(
@@ -34,5 +35,13 @@ export const reducers = createReducer(
     error: action.error,
     loadingMovies: false,
     movies: [],
+  })),
+  on(MoviesActions.likeMovieSuccess, (state, action) => ({
+    ...state,
+    likedMovies: [...state.likedMovies, action.movie],
+  })),
+  on(MoviesActions.likeMovieFailure, (state, action) => ({
+    ...state,
+    error: action.error,
   }))
 );

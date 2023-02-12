@@ -1,5 +1,6 @@
 <div class="container d-flex justify-content--center" style="flex-wrap: wrap;">
     <mat-card *ngFor="let movie of movies" class="max-w-250 m-10">
-        <app-movie [movie]="movie"></app-movie>
+        <app-movie [movie]="movie" (movieLiked)="movieLiked($event)" [isFavorite]="isFavorite(movie.imdbID)">
+        </app-movie>
     </mat-card>
 </div>
